@@ -1,0 +1,12 @@
+.MuiDrawer-paper {
+  width: 22vw;
+  min-width: 270px;
+}
+
+.MuiSnackbarContent-message{
+  width: 100%;
+}
+
+#main {
+  margin-left: 22vw;
+}
