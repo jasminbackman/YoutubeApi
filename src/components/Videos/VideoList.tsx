@@ -51,7 +51,7 @@ export class VideoList extends React.PureComponent<OwnProps> {
                                 <VideoCard 
                                 video={video} 
                                 key={video.id.videoId}
-                                playing={playingVideo !== undefined && playingVideo.id.videoId == video.id.videoId} />
+                                 />
                             ))}
                             </List>
                         </Grid>

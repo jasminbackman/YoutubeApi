@@ -4,15 +4,14 @@ import { connect } from "react-redux";
 import he from "he";
 import moment from "moment";
 import { YoutubeVideoData } from "../../redux/data_models";
-import { Card, CardHeader, Button, ButtonGroup, Grid, Box, Typography } from "@material-ui/core";
+import { Card, CardHeader, Button, ButtonGroup, Grid, Box, Typography, Tooltip } from "@material-ui/core";
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import StopIcon from '@material-ui/icons/Stop';
 import NotInterestedIcon from '@material-ui/icons/NotInterested';
-import { hideVideo, playVideo, stopVideo } from "../../redux/data_actions";
+import { hideVideo, playVideo } from "../../redux/data_actions";
 
 interface OwnProps {
     video: YoutubeVideoData;
-    playing: boolean;
 }
 type Props = OwnProps & ReturnType<typeof mapDispatchToProps>;
 
@@ -24,23 +23,19 @@ export class VideoCard extends React.PureComponent<Props> {
     }
 
     handleActionButton(){
-        const { playing, stopVideo, playVideo, video } = this.props;
-        if(playing) {
-            stopVideo();
-        }
-        else {
-            playVideo(video);
-        }
+        const { playVideo, hideVideoId, video } = this.props;
+        playVideo(video);
+        hideVideoId(video.id.videoId);
     }
 
     render() {
-        const { video, hideVideoId, playing } = this.props;
+        const { video, hideVideoId } = this.props;
         const buttonStyle = {
             border: 0,
         };
         return (
             <Grid item md={12} xs style={{marginBottom: "10px"}}>
-                <Card className={playing ? "playing" : ""}>
+                <Card>
                     <CardHeader
                     title={
                         <Typography variant="h6" component="h6">
@@ -53,21 +48,20 @@ export class VideoCard extends React.PureComponent<Props> {
                     subheader={moment(video.snippet.publishedAt).format("DD.MM.YYYY HH:mm")}
                     action={
                         <ButtonGroup>
-                            <Button 
-                            aria-label="open" 
-                            onClick={this.handleActionButton} 
-                            style={buttonStyle}
-                            className={playing ? "playing" : ""}>
-                                {!playing && 
+                            <Tooltip title="Play" placement="bottom">
+                                <Button 
+                                className="playButton"
+                                aria-label="open" 
+                                onClick={this.handleActionButton} 
+                                style={buttonStyle}>
                                     <PlayCircleFilledIcon />
-                                }
-                                {playing && 
-                                    <StopIcon />
-                                }
-                            </Button>
-                            <Button aria-label="hide" onClick={() => hideVideoId(video.id.videoId)} style={buttonStyle}>
-                                <NotInterestedIcon />
-                            </Button>
+                                </Button>
+                            </Tooltip>
+                            <Tooltip title="Hide" placement="bottom">
+                                <Button aria-label="hide" onClick={() => hideVideoId(video.id.videoId)} style={buttonStyle}>
+                                    <NotInterestedIcon />
+                                </Button>
+                            </Tooltip>
                         </ButtonGroup>
                     }
                     />
@@ -80,8 +74,7 @@ export class VideoCard extends React.PureComponent<Props> {
 function mapDispatchToProps(dispatch: Dispatch) {
     return {
         hideVideoId: (videoId: string) => dispatch(hideVideo(videoId)),
-        playVideo: (video: YoutubeVideoData) => dispatch(playVideo(video)),
-        stopVideo: () => dispatch(stopVideo())
+        playVideo: (video: YoutubeVideoData) => dispatch(playVideo(video))
     };
 
 }

@@ -5,14 +5,13 @@ import { connect } from "react-redux";
 import Youtube from "react-youtube";
 import { Options } from "react-youtube";
 import { Paper, Typography, Box, Chip } from "@material-ui/core";
-import { hideVideo } from "../../redux/data_actions";
 import { YoutubeVideoData } from "../../redux/data_models";
 
 interface OwnProps {
     video: YoutubeVideoData | undefined;
 }
 
-type Props = OwnProps & ReturnType<typeof mapDispatchToProps>;
+type Props = OwnProps;
 
 export class VideoScreen extends React.PureComponent<Props> {
     render() {
@@ -40,7 +39,6 @@ export class VideoScreen extends React.PureComponent<Props> {
                         <Youtube
                             opts={opts}
                             videoId={video.id.videoId}
-                            onEnd={() => this.props.hideVideoId(video.id.videoId)}
                         />
                     </Box>
                 }
@@ -49,11 +47,4 @@ export class VideoScreen extends React.PureComponent<Props> {
     }
 }
 
-function mapDispatchToProps(dispatch: Dispatch) {
-    return {
-        hideVideoId: (videoId: string) => dispatch(hideVideo(videoId)),
-    };
-
-}
-
-export default connect(null, mapDispatchToProps)(VideoScreen);
+export default (VideoScreen);

@@ -11,10 +11,14 @@
   margin-left: 22vw;
 }
 
-.MuiPaper-root.playing {
-  border: red 2px solid !important;
+.playButton {
+  background-color: red !important;
+  color: white !important;
+  margin-left: 5px !important;
 }
 
-.MuiButtonBase-root.playing {
+.playButton:hover {
   background-color: red !important;
+  color: white !important;
+  margin-left: 5px !important;
 }
