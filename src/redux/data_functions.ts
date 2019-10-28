@@ -43,7 +43,7 @@ export async function searchSelectedChannelVideos(){
         }
     })
     .catch(axios.spread((error: any) => {
-        console.log(error.message);
+        console.log(error);
     }));
 
     if(!results) {

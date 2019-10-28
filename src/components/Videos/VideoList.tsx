@@ -33,31 +33,29 @@ export class VideoList extends React.PureComponent<OwnProps> {
         }).slice(0, Math.min(MAX_RESULT_COUNT, this.props.videos.size)); 
 
         return (
-            <Box id="main">
-                <Grid container>
-                    <StickyContainer>
-                        <Sticky>
-                            {({style}) => (
-                                <Grid item md={12} style={{...style, zIndex: 2000}}>
-                                    <VideoScreen 
-                                        video={playingVideo}
-                                    />
-                                </Grid>
-                            )}
-                        </Sticky>
-                        <Grid item md={12}>
-                            <List style={{width: "100%" }}>
-                            {videoData.map((video: YoutubeVideoData) => (
-                                <VideoCard 
-                                video={video} 
-                                key={video.id.videoId}
-                                 />
-                            ))}
-                            </List>
-                        </Grid>
-                    </StickyContainer>
-                </Grid>
-            </Box>
+            <Grid container id="main">
+                <StickyContainer>
+                    <Sticky>
+                        {({style}) => (
+                            <Grid item md={12} style={{...style, zIndex: 2000}}>
+                                <VideoScreen 
+                                    video={playingVideo}
+                                />
+                            </Grid>
+                        )}
+                    </Sticky>
+                    <Grid item md={12}>
+                        <List style={{width: "100%" }}>
+                        {videoData.map((video: YoutubeVideoData) => (
+                            <VideoCard 
+                            video={video} 
+                            key={video.id.videoId}
+                                />
+                        ))}
+                        </List>
+                    </Grid>
+                </StickyContainer>
+            </Grid>
         )
     }
 }

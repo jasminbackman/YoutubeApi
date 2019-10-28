@@ -4,10 +4,9 @@ import { connect } from "react-redux";
 import he from "he";
 import moment from "moment";
 import { YoutubeVideoData } from "../../redux/data_models";
-import { Card, CardHeader, Button, ButtonGroup, Grid, Box, Typography, Tooltip } from "@material-ui/core";
+import { Card, CardHeader, Button, ButtonGroup, Grid, Typography, Tooltip } from "@material-ui/core";
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
-import StopIcon from '@material-ui/icons/Stop';
-import NotInterestedIcon from '@material-ui/icons/NotInterested';
+import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import { hideVideo, playVideo } from "../../redux/data_actions";
 
 interface OwnProps {
@@ -59,7 +58,7 @@ export class VideoCard extends React.PureComponent<Props> {
                             </Tooltip>
                             <Tooltip title="Hide" placement="bottom">
                                 <Button aria-label="hide" onClick={() => hideVideoId(video.id.videoId)} style={buttonStyle}>
-                                    <NotInterestedIcon />
+                                    <VisibilityOffIcon />
                                 </Button>
                             </Tooltip>
                         </ButtonGroup>

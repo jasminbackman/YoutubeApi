@@ -21,33 +21,31 @@ export class App extends React.PureComponent<Props> {
     render() {
         return (
         <MuiThemeProvider theme={muiTheme}>
-            <Container maxWidth={false}>
-                <Grid container>
-                    <Grid item md={12}>
-                        <ChannelList 
-                            channels={this.props.channels}
-                            selectedChannelIds={this.props.selectedChannelIds}
-                        />
-                        <VideoList
-                            videos={this.props.videos}
-                            hiddenVideoIds={this.props.hiddenVideoIds}
-                            playingVideo={this.props.playingVideo}
-                        />
-                    </Grid>
+            <Grid container>
+                <Grid item md={12}>
+                    <ChannelList 
+                        channels={this.props.channels}
+                        selectedChannelIds={this.props.selectedChannelIds}
+                    />
+                    <VideoList
+                        videos={this.props.videos}
+                        hiddenVideoIds={this.props.hiddenVideoIds}
+                        playingVideo={this.props.playingVideo}
+                    />
                 </Grid>
-                <Snackbar
-                    open={this.props.loading}
-                    message={
-                        <Box 
-                        display="flex" 
-                        alignItems="center" 
-                        flexGrow={1} 
-                        justifyContent="center">
-                            <CircularProgress/>
-                        </Box>
-                    }
-                />
-            </Container>
+            </Grid>
+            <Snackbar
+                open={this.props.loading}
+                message={
+                    <Box 
+                    display="flex" 
+                    alignItems="center" 
+                    flexGrow={1} 
+                    justifyContent="center">
+                        <CircularProgress/>
+                    </Box>
+                }
+            />
         </MuiThemeProvider>
         )
     }

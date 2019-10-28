@@ -1,7 +1,5 @@
 import * as React from "react";
-import { Dispatch } from "redux";
 import he from "he";
-import { connect } from "react-redux";
 import Youtube from "react-youtube";
 import { Options } from "react-youtube";
 import { Paper, Typography, Box, Chip } from "@material-ui/core";
@@ -24,7 +22,7 @@ export class VideoScreen extends React.PureComponent<Props> {
             }
         };
         return (
-            <Paper id="videoScreen" style={{backgroundColor: "dark"}}>
+            <Paper id="videoScreen" style={{backgroundColor: "dark", minWidth: "100%", position: "relative"}}>
                 {video !== undefined && 
                     <Box>
                         <Box p={2} display="flex" alignItems="center">

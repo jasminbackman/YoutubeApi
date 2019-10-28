@@ -12,13 +12,12 @@
 }
 
 .playButton {
-  background-color: red !important;
+  background-color: #FF0000 !important;
   color: white !important;
   margin-left: 5px !important;
 }
 
 .playButton:hover {
-  background-color: red !important;
-  color: white !important;
-  margin-left: 5px !important;
+  background-color: #b30000 !important;
+  color: #dddd;
 }
