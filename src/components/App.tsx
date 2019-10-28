@@ -31,6 +31,7 @@ export class App extends React.PureComponent<Props> {
                         <VideoList
                             videos={this.props.videos}
                             hiddenVideoIds={this.props.hiddenVideoIds}
+                            playingVideo={this.props.playingVideo}
                         />
                     </Grid>
                 </Grid>
@@ -57,6 +58,7 @@ const mapStateToProps = (state: RootState) => {
         selectedChannelIds: state.selectedChannelIds,
         videos: state.data,
         hiddenVideoIds: state.hiddenVideoIds,
+        playingVideo: state.playingVideo,
         loading: state.loading
     };
 };

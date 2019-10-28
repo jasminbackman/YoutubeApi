@@ -9,7 +9,9 @@ export const actionTypes = {
     LOAD_CHANNELS_DONE: 'LOAD_CHANNELS_DONE',
     SELECT_CHANNEL: 'SELECT_CHANNEL',
     DESELECT_CHANNEL: 'DESELECT_CHANNEL',
-    HIDE_VIDEO: 'HIDE_VIDEO'
+    HIDE_VIDEO: 'HIDE_VIDEO',
+    PLAY_VIDEO: 'PLAY_VIDEO',
+    STOP_VIDEO: 'STOP_VIDEO'
 };
 
 export const loadData = (channelIds: string[]) => ({
@@ -45,4 +47,13 @@ export const deselectChannel = (channelId: string) => ({
 export const hideVideo = (videoId: string) => ({
     type: actionTypes.HIDE_VIDEO,
     videoId
+});
+
+export const playVideo = (video: YoutubeVideoData) => ({
+    type: actionTypes.PLAY_VIDEO,
+    video
+});
+
+export const stopVideo = () => ({
+    type: actionTypes.STOP_VIDEO
 });

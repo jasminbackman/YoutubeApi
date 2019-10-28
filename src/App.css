@@ -10,3 +10,11 @@
 #main {
   margin-left: 22vw;
 }
+
+.MuiPaper-root.playing {
+  border: red 2px solid !important;
+}
+
+.MuiButtonBase-root.playing {
+  background-color: red !important;
+}

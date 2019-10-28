@@ -6,9 +6,10 @@ export interface RootState {
     loading: boolean;
     data: Immutable.List<YoutubeVideoData>;
     error: string | null;
-    channels: ChannelData[],
-    selectedChannelIds: string[],
-    hiddenVideoIds: string[]
+    channels: ChannelData[];
+    selectedChannelIds: string[];
+    hiddenVideoIds: string[];
+    playingVideo: YoutubeVideoData | undefined;
 }
 
 const initialState: RootState = {
@@ -17,7 +18,8 @@ const initialState: RootState = {
     error: null,
     channels: [],
     selectedChannelIds: [],
-    hiddenVideoIds: []
+    hiddenVideoIds: [],
+    playingVideo: undefined
 };
 
 export function videoData(state: RootState = initialState, action: any) {
@@ -65,6 +67,16 @@ export function videoData(state: RootState = initialState, action: any) {
             return Object.assign({}, state, {
                 ...state,
                 hiddenVideoIds: hiddenIds 
+            })
+        case actionTypes.PLAY_VIDEO:
+            return Object.assign({}, state, {
+                ...state,
+                playingVideo: state.hiddenVideoIds.indexOf(action.video.id.videoId) > -1 ? state.playingVideo : action.video 
+            })
+        case actionTypes.STOP_VIDEO:
+            return Object.assign({}, state, {
+                ...state,
+                playingVideo: undefined
             })
 
       default:
