@@ -49,6 +49,11 @@ export class App extends React.PureComponent<Props> {
         )
     }
 }
+
+// Better way of using these state props would've been to map them this way inside the components
+// that actually need them (same way as dispatch props have been given to VideoCard component for example),
+// but I was unable to find a solution to this issue: https://github.com/DefinitelyTyped/DefinitelyTyped/issues/16990
+// and therefore the state props are passed to children from this component.
 const mapStateToProps = (state: RootState) => {
     return {
         channels: state.channels,
