@@ -1,5 +1,5 @@
 {
-  "name": "react-app",
+  "name": "youtube-api",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -57,6 +57,6 @@
     "webpack-cli": "^3.3.9"
   },
   "keywords": [],
-  "author": "",
+  "author": "Jasmin Backman",
   "license": "ISC"
 }
