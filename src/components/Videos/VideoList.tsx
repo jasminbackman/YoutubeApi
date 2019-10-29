@@ -33,18 +33,18 @@ export class VideoList extends React.PureComponent<OwnProps> {
         }).slice(0, Math.min(MAX_RESULT_COUNT, this.props.videos.size)); 
 
         return (
-            <Grid container id="main">
+            <Grid item md={8} lg={8} sm={7} xs={6}>
                 <StickyContainer>
                     <Sticky>
                         {({style}) => (
-                            <Grid item md={12} style={{...style, zIndex: 2000}}>
+                            <Grid item md={12} lg={12} style={{...style, zIndex: 2000}}>
                                 <VideoScreen 
                                     video={playingVideo}
                                 />
                             </Grid>
                         )}
                     </Sticky>
-                    <Grid item md={12}>
+                    <Grid item md={12} lg={12}>
                         <List style={{width: "100%" }}>
                         {videoData.map((video: YoutubeVideoData) => (
                             <VideoCard 

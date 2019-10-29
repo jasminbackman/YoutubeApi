@@ -22,17 +22,16 @@ export class App extends React.PureComponent<Props> {
         return (
         <MuiThemeProvider theme={muiTheme}>
             <Grid container>
-                <Grid item md={12}>
-                    <ChannelList 
-                        channels={this.props.channels}
-                        selectedChannelIds={this.props.selectedChannelIds}
-                    />
-                    <VideoList
-                        videos={this.props.videos}
-                        hiddenVideoIds={this.props.hiddenVideoIds}
-                        playingVideo={this.props.playingVideo}
-                    />
-                </Grid>
+                <ChannelList 
+                    channels={this.props.channels}
+                    selectedChannelIds={this.props.selectedChannelIds}
+                />
+                <Grid item md={3} lg={3} sm={5} xs={6}></Grid>
+                <VideoList
+                    videos={this.props.videos}
+                    hiddenVideoIds={this.props.hiddenVideoIds}
+                    playingVideo={this.props.playingVideo}
+                />
             </Grid>
             <Snackbar
                 open={this.props.loading}
