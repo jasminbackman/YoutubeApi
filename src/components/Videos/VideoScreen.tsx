@@ -1,13 +1,12 @@
-import * as React from "react";
-import he from "he";
-import Youtube from "react-youtube";
-import { Options } from "react-youtube";
-import { Paper, Typography, Box, Chip, IconButton, Grid, Tooltip } from "@material-ui/core";
-import { YoutubeVideoData } from "../../redux/data_models";
+import { Box, Chip, Grid, IconButton, Paper, Tooltip, Typography } from "@material-ui/core";
 import CloseIcon from '@material-ui/icons/Close';
-import { stopVideo } from "../../redux/data_actions";
-import { Dispatch } from "redux";
+import he from "he";
+import * as React from "react";
 import { connect } from "react-redux";
+import Youtube, { Options } from "react-youtube";
+import { Dispatch } from "redux";
+import { stopVideo } from "../../redux/data_actions";
+import { YoutubeVideoData } from "../../redux/data_models";
 
 interface OwnProps {
     video: YoutubeVideoData | undefined;
@@ -29,25 +28,25 @@ export class VideoScreen extends React.PureComponent<Props> {
         let title = video !== undefined ? he.decode(video.snippet.channelTitle) + " - " + he.decode(video.snippet.title) : "";
 
         return (
-            <Paper id="videoScreen" style={{backgroundColor: "dark", minWidth: "100%", position: "relative"}}>
-                {video !== undefined && 
+            <Paper id="videoScreen" style={{ backgroundColor: "dark", minWidth: "100%", position: "relative" }}>
+                {video !== undefined &&
                     <Box>
                         <Box p={2} pb={1}>
                             <Grid container justify="space-between">
-                                <Chip label="Now playing" color="secondary" style={{marginRight: "10px"}} />
+                                <Chip label="Now playing" color="secondary" style={{ marginRight: "10px" }} />
                                 <Tooltip title={title} placement="left">
                                     <Typography variant="h6" component="h6">
                                         {
-                                            title.length > 80 ? title.substring(0,77) + "..." : title
+                                            title.length > 80 ? title.substring(0, 77) + "..." : title
                                         }
                                     </Typography>
                                 </Tooltip>
-                                <IconButton 
-                                    className="no-padding" 
-                                    component={IconButton} 
-                                    children={<CloseIcon />} 
+                                <IconButton
+                                    className="no-padding"
+                                    component={IconButton}
+                                    children={<CloseIcon />}
                                     onClick={() => stopVideo()}
-                                 />
+                                />
                             </Grid>
                         </Box>
                         <Youtube

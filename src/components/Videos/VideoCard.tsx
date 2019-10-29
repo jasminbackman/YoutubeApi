@@ -1,13 +1,13 @@
-import * as React from "react";
-import { Dispatch } from "redux";
-import { connect } from "react-redux";
-import he from "he";
-import moment from "moment";
-import { YoutubeVideoData } from "../../redux/data_models";
-import { Card, CardHeader, Button, ButtonGroup, Grid, Typography, Tooltip } from "@material-ui/core";
+import { Button, ButtonGroup, Card, CardHeader, Grid, Tooltip, Typography } from "@material-ui/core";
 import PlayCircleFilledIcon from '@material-ui/icons/PlayCircleFilled';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
+import he from "he";
+import moment from "moment";
+import * as React from "react";
+import { connect } from "react-redux";
+import { Dispatch } from "redux";
 import { hideVideo, playVideo } from "../../redux/data_actions";
+import { YoutubeVideoData } from "../../redux/data_models";
 
 interface OwnProps {
     video: YoutubeVideoData;
@@ -15,13 +15,13 @@ interface OwnProps {
 type Props = OwnProps & ReturnType<typeof mapDispatchToProps>;
 
 export class VideoCard extends React.PureComponent<Props> {
-    constructor(props: Props){
+    constructor(props: Props) {
         super(props);
 
         this.handleActionButton = this.handleActionButton.bind(this);
     }
 
-    handleActionButton(){
+    handleActionButton() {
         const { playVideo, hideVideoId, video } = this.props;
         playVideo(video);
         hideVideoId(video.id.videoId);
@@ -33,7 +33,7 @@ export class VideoCard extends React.PureComponent<Props> {
             border: 0,
         };
         return (
-            <Grid item md={12} xs style={{marginBottom: "10px"}}>
+            <Grid item md={12} xs style={{ marginBottom: "10px" }}>
                 <Card>
                     <CardHeader
                         title={
@@ -48,10 +48,10 @@ export class VideoCard extends React.PureComponent<Props> {
                         action={
                             <ButtonGroup>
                                 <Tooltip title="Play" placement="bottom">
-                                    <Button 
+                                    <Button
                                         className="playButton"
-                                        aria-label="open" 
-                                        onClick={this.handleActionButton} 
+                                        aria-label="open"
+                                        onClick={this.handleActionButton}
                                         style={buttonStyle}
                                     >
                                         <PlayCircleFilledIcon />

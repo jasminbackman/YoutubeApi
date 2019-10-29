@@ -1,5 +1,5 @@
 import Immutable from "immutable";
-import { ChannelData, YoutubeVideoData } from "./data_models"
+import { ChannelData, YoutubeVideoData } from "./data_models";
 
 export const actionTypes = {
     LOAD_DATA: 'LOAD_DATA',

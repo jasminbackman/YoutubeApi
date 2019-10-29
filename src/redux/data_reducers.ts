@@ -1,5 +1,5 @@
-import { actionTypes } from "./data_actions";
 import Immutable from "immutable";
+import { actionTypes } from "./data_actions";
 import { ChannelData, YoutubeVideoData } from "./data_models";
 
 export interface RootState {
@@ -24,21 +24,21 @@ const initialState: RootState = {
 
 export function videoData(state: RootState = initialState, action: any) {
     switch (action.type) {
-      case actionTypes.LOAD_DATA:
+        case actionTypes.LOAD_DATA:
             return Object.assign({}, state, {
                 ...state,
                 loading: true,
                 data: null,
                 error: null
             })
-      case actionTypes.LOAD_DONE:
+        case actionTypes.LOAD_DONE:
             return Object.assign({}, state, {
                 ...state,
                 loading: false,
                 data: action.data,
                 error: null
             })
-       case actionTypes.LOAD_FAIL:
+        case actionTypes.LOAD_FAIL:
             return Object.assign({}, state, {
                 ...state,
                 loading: false,
@@ -50,8 +50,8 @@ export function videoData(state: RootState = initialState, action: any) {
                 channels: action.data
             })
         case actionTypes.SELECT_CHANNEL:
-            let selections: string[] = state.selectedChannelIds.indexOf(action.channelId) < 0 ? 
-            state.selectedChannelIds.concat(action.channelId) : state.selectedChannelIds;
+            let selections: string[] = state.selectedChannelIds.indexOf(action.channelId) < 0 ?
+                state.selectedChannelIds.concat(action.channelId) : state.selectedChannelIds;
             return Object.assign({}, state, {
                 ...state,
                 selectedChannelIds: selections
@@ -62,16 +62,16 @@ export function videoData(state: RootState = initialState, action: any) {
                 selectedChannelIds: state.selectedChannelIds.filter(s => s !== action.channelId)
             })
         case actionTypes.HIDE_VIDEO:
-            let hiddenIds: string[] = state.hiddenVideoIds.indexOf(action.videoId) < 0 ? 
-            state.hiddenVideoIds.concat(action.videoId) : state.hiddenVideoIds;
+            let hiddenIds: string[] = state.hiddenVideoIds.indexOf(action.videoId) < 0 ?
+                state.hiddenVideoIds.concat(action.videoId) : state.hiddenVideoIds;
             return Object.assign({}, state, {
                 ...state,
-                hiddenVideoIds: hiddenIds 
+                hiddenVideoIds: hiddenIds
             })
         case actionTypes.PLAY_VIDEO:
             return Object.assign({}, state, {
                 ...state,
-                playingVideo: state.hiddenVideoIds.indexOf(action.video.id.videoId) > -1 ? state.playingVideo : action.video 
+                playingVideo: state.hiddenVideoIds.indexOf(action.video.id.videoId) > -1 ? state.playingVideo : action.video
             })
         case actionTypes.STOP_VIDEO:
             return Object.assign({}, state, {
@@ -79,7 +79,7 @@ export function videoData(state: RootState = initialState, action: any) {
                 playingVideo: undefined
             })
 
-      default:
-        return state
+        default:
+            return state
     }
 }

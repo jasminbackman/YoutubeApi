@@ -1,32 +1,33 @@
-import * as React from "react";
-import { Dispatch } from 'redux';
+import { ListItemIcon } from "@material-ui/core";
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { ChannelData } from "../../redux/data_models";
 import CheckIcon from '@material-ui/icons/Check';
-import { ListItemIcon } from "@material-ui/core";
-import { selectChannel, deselectChannel } from "../../redux/data_actions";
+import * as React from "react";
 import { connect } from "react-redux";
+import { Dispatch } from 'redux';
+import { deselectChannel, selectChannel } from "../../redux/data_actions";
+import { ChannelData } from "../../redux/data_models";
 
-interface OwnProps{
+interface OwnProps {
     data: ChannelData;
     selected: boolean;
 }
+
 type Props = OwnProps & ReturnType<typeof mapDispatchToProps>;
 
 export class Channel extends React.PureComponent<Props> {
-    constructor(props: any){
+    constructor(props: any) {
         super(props);
         this.state = {
             selected: false
         };
-        
+
         this.toggleSelectionState = this.toggleSelectionState.bind(this);
     }
 
-    toggleSelectionState(){
+    toggleSelectionState() {
         const { selectChannelId, deselectChannelId, data, selected } = this.props;
-        if(!selected) {
+        if (!selected) {
             selectChannelId(data.id);
         }
         else {
@@ -37,10 +38,10 @@ export class Channel extends React.PureComponent<Props> {
     render() {
         const { data, selected } = this.props;
         return (
-            <ListItem button 
-            key={data.id} 
-            onClick={this.toggleSelectionState}>
-                {selected && 
+            <ListItem button
+                key={data.id}
+                onClick={this.toggleSelectionState}>
+                {selected &&
                     <ListItemIcon>
                         <CheckIcon />
                     </ListItemIcon>
