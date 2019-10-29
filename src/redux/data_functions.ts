@@ -1,7 +1,7 @@
 import axios from 'axios';
 import Immutable from "immutable";
 import { YoutubeResponse, ChannelData, YoutubeVideoData } from "./data_models";
-import { store } from '../store';
+import { store } from './store';
 import { youtube, API_KEY, MAX_RESULT_COUNT } from "../constants/youtubeRequest";
 import {
     loadData,
@@ -12,10 +12,12 @@ import {
 
 export async function searchSelectedChannelVideos(){
     const channelIds = store.getState().selectedChannelIds;
+
     store.dispatch(loadData(channelIds));
 
     let requests: any[] = [];
 
+    // Youtube API does not support searching videos from multiple channel ids with one request (29.10.2019)
     for(let i: number = 0; i < channelIds.length; i++){
         const channelId: string = channelIds[i];
         requests.push(youtube.get('/search',
@@ -33,6 +35,7 @@ export async function searchSelectedChannelVideos(){
     .then((result: any) => {
         try {
             const results = result.map((r: any) => Immutable.fromJS(r.data) as YoutubeResponse);
+
             return Immutable.List<YoutubeVideoData>(results.map((r: YoutubeResponse) => Immutable.get(r, "items", []))
             .reduce((prev: YoutubeVideoData[], current: YoutubeVideoData[]) =>{
                 return prev.concat(current);
@@ -57,6 +60,7 @@ export async function searchSelectedChannelVideos(){
 
 export function loadChannels(){
 
+    // Hardcoded demo data. In actual implementation channel data could be fetched from Youtube API using channel URL or ID
     const demoChannelData: ChannelData[] = [
         {
             name: "Late Night with Seth Meyers",

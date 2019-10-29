@@ -48,9 +48,9 @@ export class VideoList extends React.PureComponent<OwnProps> {
                         <List style={{width: "100%" }}>
                         {videoData.map((video: YoutubeVideoData) => (
                             <VideoCard 
-                            video={video} 
-                            key={video.id.videoId}
-                                />
+                                video={video} 
+                                key={video.id.videoId}
+                            />
                         ))}
                         </List>
                     </Grid>

@@ -31,9 +31,10 @@ export class ChannelList extends React.PureComponent<Props> {
                     </ListSubheader>
                     {channels.map((val: ChannelData) => (
                         <Channel 
-                        data={val} 
-                        key={val.id}
-                        selected={selectedChannelIds.indexOf(val.id) > -1} />
+                            data={val} 
+                            key={val.id}
+                            selected={selectedChannelIds.indexOf(val.id) > -1}
+                        />
                     ))}
                 </List>
                 <ButtonGroup fullWidth={true}>
